@@ -505,6 +505,7 @@
 				4FAAA9EC1DB9DAD100E58CAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FAAA9ED1DB9DAD100E58CAC /* Build configuration list for PBXNativeTarget "EncryptionTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +514,7 @@
 				4FAAA9EF1DB9DAD100E58CAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FAAA9F01DB9DAD100E58CAC /* Build configuration list for PBXNativeTarget "EncryptionUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +523,7 @@
 				4FAAA9F21DB9DAD100E58CAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-   
+    [self playfair];
 }
 
 -(void)caesar{
@@ -100,6 +100,73 @@
     }
     
     NSLog(@"clearString------%@",clearString);
+}
+
+-(void)playfair{
+    
+    // 明文
+    NSMutableString *firstString = [NSMutableString stringWithFormat:@"%@",@"we are discovered save yourself"];
+    
+    NSMutableString *secretkeyString = [@"crazy dog" mutableCopy];
+    
+    // 去除空格
+    firstString = [[firstString stringByReplacingOccurrencesOfString:@" " withString:@""] mutableCopy];
+    
+    NSLog(@"------firstString------:%@",firstString);
+    
+    // 变成大写
+    firstString = [[firstString uppercaseString] mutableCopy];
+    
+    NSLog(@"------firstString------:%@",firstString);
+    
+    // 如果存在相同的字符 中间插入k
+    for (int i=1; i<firstString.length;i= i+2) {
+        
+        NSLog(@"characterAtIndex:i   %hu",[firstString characterAtIndex:i]);
+        
+        NSLog(@"characterAtIndex:i-1   %hu",[firstString characterAtIndex:i-1]);
+        
+        if ([firstString characterAtIndex:i] == [firstString characterAtIndex:i-1]) {
+            [firstString insertString:@"K" atIndex:i];
+        }
+    }
+    
+    NSLog(@"------firstString------:%@",firstString);
+    
+    // 如果经过处理后的明文长度非偶数，则在后面加上字母k
+    if((firstString.length)%2!=0)
+    {
+        [firstString appendString:@"K"];
+    }
+    
+    NSLog(@"处理后的明文:%@",firstString);
+    
+    // 处理密钥
+    
+    // 大写
+    secretkeyString = [[secretkeyString uppercaseString] mutableCopy];
+    
+    // 把J换成I
+    secretkeyString = [[secretkeyString stringByReplacingOccurrencesOfString:@"J" withString:@"I"] mutableCopy];
+    
+    secretkeyString = [[secretkeyString stringByReplacingOccurrencesOfString:@" " withString:@""] mutableCopy];
+    
+    // 除去重复出现的字母
+    
+    NSMutableString *seckeyString = [NSMutableString string];
+    
+    for (int i=0; i<secretkeyString.length; i++) {
+        
+        NSString *string = [secretkeyString substringWithRange:NSMakeRange(i, 1)];
+        
+        if ([seckeyString rangeOfString:string].location == NSNotFound ) {
+            [seckeyString appendString:string];
+        }
+    }
+    
+    NSLog(@"------处理后的密钥------:%@",seckeyString);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
