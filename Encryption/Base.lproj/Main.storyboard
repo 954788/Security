@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +18,49 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-lN-lpn">
+                                <state key="normal" title="加密"/>
+                                <connections>
+                                    <action selector="jiamiAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kcy-Qi-wJe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gs8-ya-IO7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="gaC-n8-cfU"/>
+                                    <constraint firstAttribute="width" constant="31" id="jhj-Cw-Jpa"/>
+                                </constraints>
+                                <state key="normal" title="解密"/>
+                                <connections>
+                                    <action selector="jiemiAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fk6-DL-71h"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-uI-c1r">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="gVk-y5-wbX"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Gs8-ya-IO7" firstAttribute="leading" secondItem="xTA-uI-c1r" secondAttribute="trailing" constant="15" id="5r2-hY-Go5"/>
+                            <constraint firstItem="3Rh-lN-lpn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="FpB-DZ-aXi"/>
+                            <constraint firstItem="3Rh-lN-lpn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="7" id="dJ2-em-DCI"/>
+                            <constraint firstItem="xTA-uI-c1r" firstAttribute="leading" secondItem="3Rh-lN-lpn" secondAttribute="trailing" constant="14" id="iuq-u5-HlY"/>
+                            <constraint firstItem="Gs8-ya-IO7" firstAttribute="centerY" secondItem="3Rh-lN-lpn" secondAttribute="centerY" id="s1V-U5-7kq"/>
+                            <constraint firstItem="xTA-uI-c1r" firstAttribute="centerY" secondItem="3Rh-lN-lpn" secondAttribute="centerY" id="ySE-ZH-46L"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textfield" destination="xTA-uI-c1r" id="quh-gK-a6P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="63" y="83"/>
         </scene>
     </scenes>
 </document>

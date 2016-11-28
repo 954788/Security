@@ -31,8 +31,13 @@ string workOnKeyWord(string keyWord)// takes a string
     }
     return word;
 }
+
+
+// 处理字符串
 string workOnSecretMessage(string secretMessage)
 {
+    
+    // 把J换成I
     for(int i = 0; i < secretMessage.length(); i++)
     {
         if(secretMessage[i] == 'J')
@@ -40,6 +45,8 @@ string workOnSecretMessage(string secretMessage)
             secretMessage[i] = 'I';
         }
     }
+    
+    // 如果分组的两个字母相同 ，插入一个填充字母X
     string word;
     for(int i = 0; i < secretMessage.length()-1; i++)
     {
@@ -56,6 +63,8 @@ string workOnSecretMessage(string secretMessage)
         }
     }
     word+=secretMessage[secretMessage.length()-1];
+    
+    // 如果字符串长度是单数 ，在最后填充一个字母X
     if(word.length() % 2 != 0)
     {
         word+='X';
@@ -65,12 +74,13 @@ string workOnSecretMessage(string secretMessage)
 
 int main()
 {
-    string keyWord = "MONARCHY"; // just to check repeeting letters
-    string secretMessage = "WE ARE DISCOVERED SAVE YOURSELF";
+    string keyWord = "MONARCHY"; // 关键词
+    string secretMessage = "WE ARE DISCOVERED SAVE YOURSELF";// 明文
     cout << "word to encript = "<<secretMessage<<endl;
-    //work on keyword
+    // 处理关键字
     keyWord = workOnKeyWord(keyWord);
-    //Create table with letters
+    
+    // 制作字母矩阵
     char letterArray[5][5];
     int keyWordIndex = 0;
     int alphabetLetter = 65;
@@ -112,7 +122,8 @@ int main()
             }
         }
     }
-    // print table
+    
+    // 打印字母矩阵
     for(int i = 0; i < 5; i++)
     {
         for(int j = 0; j < 5; j++)
@@ -121,19 +132,24 @@ int main()
         }
         cout<<endl;
     }
-    // work on secret message
+    
+    // 处理明文字符串
     secretMessage = workOnSecretMessage(secretMessage);
-    // encription
+    
+    // 加密
     string twoLetters = "";
     string encriptedWord = "";
     int firstLetterRowIndex, firstLetterColIndex, secondLetterRowIndex, secondLetterColIndex;
     for(int i = 0; i < secretMessage.length()-1; i+=2)
     {
         
-        firstLetterRowIndex = 0, firstLetterColIndex = 0, secondLetterRowIndex = 0, secondLetterColIndex = 0;
+        firstLetterRowIndex = 0, firstLetterColIndex = 0,
+        secondLetterRowIndex = 0, secondLetterColIndex = 0;
+        
         twoLetters = secretMessage[i];
         twoLetters += secretMessage[i+1];
-        //find first word
+        
+        //在字母矩阵中找到字符串的第一个字母
         for(int p = 0; p < 5; p++)
         {
             bool breakeIf = false;
@@ -152,7 +168,8 @@ int main()
                 break;
             }
         }
-        // find second word
+        
+        // 找到第二个字母
         for(int p = 0; p < 5; p++)
         {
             bool breakeIf = false;
@@ -171,9 +188,11 @@ int main()
                 break;
             }
         }
+        
+        // 判断是否同列
         if(firstLetterColIndex == secondLetterColIndex)
         {
-            
+            // 不在最后一行
             if( firstLetterRowIndex < 4 && secondLetterRowIndex < 4)
             {
                 firstLetterRowIndex++;
@@ -181,6 +200,8 @@ int main()
                 encriptedWord+=letterArray[firstLetterRowIndex][firstLetterColIndex];
                 encriptedWord+=letterArray[secondLetterRowIndex][secondLetterColIndex];
             }
+            
+            // 在最后一行
             else
             {
                 if(firstLetterRowIndex == 4)
@@ -197,8 +218,11 @@ int main()
                 encriptedWord+=letterArray[secondLetterRowIndex][secondLetterColIndex];
             }
         }
+        
+        // 判断是否同行
         else if(firstLetterRowIndex == secondLetterRowIndex)
         {
+            // 不在最后一列
             if(firstLetterColIndex < 4 && secondLetterColIndex < 4)
             {
                 firstLetterColIndex++;
@@ -206,6 +230,8 @@ int main()
                 encriptedWord+=letterArray[firstLetterRowIndex][firstLetterColIndex];
                 encriptedWord+=letterArray[secondLetterRowIndex][secondLetterColIndex];
             }
+            
+            // 在最后一列
             else
             {
                 if(firstLetterColIndex == 4)
@@ -222,6 +248,8 @@ int main()
                 encriptedWord+=letterArray[secondLetterRowIndex][secondLetterColIndex];
             }
         }
+        
+        // 不同行不同列
         else
         {
             encriptedWord+=letterArray[firstLetterRowIndex][secondLetterColIndex];
