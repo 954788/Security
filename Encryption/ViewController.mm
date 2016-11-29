@@ -91,6 +91,7 @@ string workOnSecretMessage(string secretMessage)
 
 @property (weak, nonatomic) IBOutlet UITextField *playtextfield;
 
+@property (weak, nonatomic) IBOutlet UITextField *numberkey;
 
 @end
 
@@ -107,7 +108,7 @@ string workOnSecretMessage(string secretMessage)
 }
 
 -(void)caesar{
-    _array = @[@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"A",@"B",@"C"];
+    _array = @[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
     
     _array2 = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z"];
     
@@ -118,75 +119,11 @@ string workOnSecretMessage(string secretMessage)
    
 }
 
-//-(void)playfair{
-//    
-//    // 明文
-//    NSMutableString *firstString = [NSMutableString stringWithFormat:@"%@",@"we are discovered save yourself"];
-//    
-//    NSMutableString *secretkeyString = [@"crazy dog" mutableCopy];
-//    
-//    // 去除空格
-//    firstString = [[firstString stringByReplacingOccurrencesOfString:@" " withString:@""] mutableCopy];
-//    
-//    NSLog(@"------firstString------:%@",firstString);
-//    
-//    // 变成大写
-//    firstString = [[firstString uppercaseString] mutableCopy];
-//    
-//    NSLog(@"------firstString------:%@",firstString);
-//    
-//    // 如果存在相同的字符 中间插入k
-//    for (int i=1; i<firstString.length;i= i+2) {
-//        
-//        NSLog(@"characterAtIndex:i   %hu",[firstString characterAtIndex:i]);
-//        
-//        NSLog(@"characterAtIndex:i-1   %hu",[firstString characterAtIndex:i-1]);
-//        
-//        if ([firstString characterAtIndex:i] == [firstString characterAtIndex:i-1]) {
-//            [firstString insertString:@"K" atIndex:i];
-//        }
-//    }
-//    
-//    NSLog(@"------firstString------:%@",firstString);
-//    
-//    // 如果经过处理后的明文长度非偶数，则在后面加上字母k
-//    if((firstString.length)%2!=0)
-//    {
-//        [firstString appendString:@"K"];
-//    }
-//    
-//    NSLog(@"处理后的明文:%@",firstString);
-//    
-//    // 处理密钥
-//    
-//    // 大写
-//    secretkeyString = [[secretkeyString uppercaseString] mutableCopy];
-//    
-//    // 把J换成I
-//    secretkeyString = [[secretkeyString stringByReplacingOccurrencesOfString:@"J" withString:@"I"] mutableCopy];
-//    
-//    secretkeyString = [[secretkeyString stringByReplacingOccurrencesOfString:@" " withString:@""] mutableCopy];
-//    
-//    // 除去重复出现的字母
-//    
-//    NSMutableString *seckeyString = [NSMutableString string];
-//    
-//    for (int i=0; i<secretkeyString.length; i++) {
-//        
-//        NSString *string = [secretkeyString substringWithRange:NSMakeRange(i, 1)];
-//        
-//        if ([seckeyString rangeOfString:string].location == NSNotFound ) {
-//            [seckeyString appendString:string];
-//        }
-//    }
-//    
-//    NSLog(@"------处理后的密钥------:%@",seckeyString);
-//    
-//    
-//}
 
 
 - (IBAction)jiamiAction:(id)sender {
+    
+    
     
     NSMutableArray *mutArray = [NSMutableArray array];
     
@@ -205,15 +142,31 @@ string workOnSecretMessage(string secretMessage)
     _endMutArray = [NSMutableArray array];
     
     // 加密
+//    for (NSString *string in mutArray) {
+//        if ([string isEqualToString:@" "]) {
+//            [_endMutArray addObject:@" "];
+//        }else{
+//            int i = ([string characterAtIndex:0]+1-100)%26;
+//            //            NSLog(@"i:%@------%d",string,[string characterAtIndex:0]);
+//            [_endMutArray addObject:_array[i]];
+//        }
+//    }
+    
+
+    
     for (NSString *string in mutArray) {
         if ([string isEqualToString:@" "]) {
             [_endMutArray addObject:@" "];
         }else{
-            int i = ([string characterAtIndex:0]+3-100)%26;
-            //            NSLog(@"i:%@------%d",string,[string characterAtIndex:0]);
-            [_endMutArray addObject:_array[i]];
+            [_array2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *string2 = obj;
+                if ([string isEqualToString:string2]) {
+                    [_endMutArray addObject:[_array objectAtIndex:idx+[_numberkey.text intValue]]];
+                }
+            }];
         }
     }
+
     
     NSLog(@"endArray------%@",_endMutArray);
     
@@ -244,7 +197,7 @@ string workOnSecretMessage(string secretMessage)
             [_array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *string2 = obj;
                 if ([string isEqualToString:string2]) {
-                    [clearArray addObject:[_array2 objectAtIndex:idx]];
+                    [clearArray addObject:[_array2 objectAtIndex:idx-[_numberkey.text intValue]]];
                 }
             }];
         }
