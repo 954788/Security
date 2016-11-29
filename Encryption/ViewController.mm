@@ -93,6 +93,7 @@ string workOnSecretMessage(string secretMessage)
 @property (weak, nonatomic) IBOutlet UITextField *playtextfield;
 
 @property (weak, nonatomic) IBOutlet UITextField *numberkey;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
@@ -143,18 +144,6 @@ string workOnSecretMessage(string secretMessage)
     _endMutArray = [NSMutableArray array];
     
     // 加密
-//    for (NSString *string in mutArray) {
-//        if ([string isEqualToString:@" "]) {
-//            [_endMutArray addObject:@" "];
-//        }else{
-//            int i = ([string characterAtIndex:0]+1-100)%26;
-//            //            NSLog(@"i:%@------%d",string,[string characterAtIndex:0]);
-//            [_endMutArray addObject:_array[i]];
-//        }
-//    }
-    
-
-    
     for (NSString *string in mutArray) {
         if ([string isEqualToString:@" "]) {
             [_endMutArray addObject:@" "];
@@ -410,6 +399,8 @@ string jiami;
     cout << "\nencriprionWord = " << encriptedWord << endl;
     
     jiami = encriptedWord;
+    
+    _label.text = [NSString stringWithFormat:@"%s",jiami.c_str()];
 }
 
 - (IBAction)playjiemi:(id)sender {
@@ -476,7 +467,7 @@ string jiami;
     // 处理明文字符串
     secretMessage = workOnSecretMessage(secretMessage);
     
-    // 加密
+    // 解密
     string twoLetters = "";
     string encriptedWord = "";
     int firstLetterRowIndex, firstLetterColIndex, secondLetterRowIndex, secondLetterColIndex;
@@ -598,7 +589,7 @@ string jiami;
     }
     cout << "\nencriprionWord = " << encriptedWord << endl;
 
-    
+       _label.text = [NSString stringWithFormat:@"%s",encriptedWord.c_str()];
 }
 
 

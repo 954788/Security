@@ -87,6 +87,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GZ-DE-YvK">
+                                <frame key="frameInset" minX="27" minY="255" width="305" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -99,6 +106,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="label" destination="7GZ-DE-YvK" id="yxL-fV-xLw"/>
                         <outlet property="numberkey" destination="cb8-oF-O7Y" id="tCC-HI-ELe"/>
                         <outlet property="playkeytextfield" destination="6jg-jc-Myh" id="MyE-Ix-piS"/>
                         <outlet property="playtextfield" destination="1gn-k1-soM" id="QHz-dq-Uod"/>
@@ -107,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="-26"/>
+            <point key="canvasLocation" x="261.60000000000002" y="-26.53673163418291"/>
         </scene>
     </scenes>
 </document>
